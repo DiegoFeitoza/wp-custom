@@ -1,40 +1,68 @@
 
 <?php /* Template Name: Filmes */ ?>
 <?php get_header(); ?>
-
+<div class="container">
+    <div class="row">
 	<main role="main">
 		<!-- section -->
 		<section>
 
-            <h1><?php the_title(); ?> - pg filmes</h1>
+            <h1>
+                <?php the_title(); ?>
+            </h1>
+            
+                    
+                
             <?php 
             $newsArgs = array( 'post_type' => 'filme', 'posts_per_page' => 4);                   
             $field_name="Filme";                       
                 $newsLoop = new WP_Query( $newsArgs );                  
                                     
                 while ( $newsLoop->have_posts() ) : $newsLoop->the_post();              ?>
-            <div class="filmes">
-                    <?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
-                        <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-                            <?php the_post_thumbnail(); // Fullsize image for the single post ?>
-                        </a>
-                    <?php endif; ?>                                
-                    <h1>
-                        <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-                            <?php the_title(); ?>
-                        </a>
-                    </h1>
-                    <p>
-                        <?php the_content(); ?>
-                        Diretor: <?php get_field('diretor','Filme'); ?>
-                        <?php the_field($field_name,'diretor'); ?>
-                    </p>
-                    <p>
-                        <?php echo get_the_term_list( $post->ID, 'categoria-filmes', 'Categorias: ', ' '); ?>
-                    </p>
-                    <p>Retornando o campo personalizado:
-                        <?php echo get_post_meta($post->ID, 'valor_meta', true); ?>
-                    </p>
+            <div class="col-xl-4">
+                <div class="card">
+                    <?php $attr = array(
+                                'src'   => $src,
+                                'alt' => "Card image cap",
+                                'class' => " card-img card-img-top ",
+                            ); ?>
+                <?php the_post_thumbnail('',$attr); // Fullsize image for the single post ?>
+                        <div class="card-body">
+                            <p class="card-text">
+                            <?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
+                            <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+                                
+                            </a>
+                        <?php endif; ?>                                
+                        <h3>
+                            <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+                                <?php the_title(); ?>
+                            </a>
+                        </h3>
+                        <!-- detalhes do filme -->
+                        <p>
+                            Diretor: <?php echo get_field('diretor') ?> | 
+                            Duração: <?php echo get_field('duracao') ?> | 
+                            <?php echo get_the_term_list( $post->ID, 'categoria-filmes', 'Categorias: ', ', ') ?> | 
+                            Classificação: 
+                            <?php
+                                $tags= get_the_terms( $id, 'idade');
+                                foreach($tags as $tag): 
+                            ?>
+                                <a class="link-classificacao" href="<?php echo get_tag_link( $tag->term_id ) ?>" target="_self">
+                                    <?php echo $tag->name ?>
+                                </a>
+                            <?php endforeach;?>	
+                        <!-- <p>	 -->
+                            <?php //echo wp_trim_words( get_the_content(), 20, '...' );?>
+                        <!-- </p> -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filme">
+                    
+                    	
             </div>
             <?php endwhile; ?>
 
@@ -48,8 +76,6 @@
 				<?php comments_template( '', true ); // Remove if you don't want comments ?>
 
 				<br class="clear">
-
-				<?php edit_post_link(); ?>
                 
 			</article>
 			<!-- /article -->
@@ -71,7 +97,6 @@
 		</section>
 		<!-- /section -->
 	</main>
-
-<?php get_sidebar(); ?>
-
+        </div>
+    </div>
 <?php get_footer(); ?>

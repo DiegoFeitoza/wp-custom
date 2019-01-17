@@ -32,7 +32,7 @@ a{
 		text-decoration: none;
 	}
 
-	&:focus, &active{
+	&:focus, &:active{
 		outline: none;
 		text-decoration: none;
 	}
@@ -81,7 +81,7 @@ a{
 
 /* ANIMATIONS / DETAILS -----------------------------------------------------------*/
 .trans{
-	transition: all .5s ease-in-out;
+	transition: all .2s ease-in-out;
 }
 
 .notop{
