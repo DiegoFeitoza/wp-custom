@@ -66,24 +66,24 @@ if (function_exists('add_theme_support'))
 function html5blank_nav()
 {
 	wp_nav_menu(
-	array(
-		'theme_location'  => 'header-menu',
-		'menu'            => 'menu_filmes',
-		'container'       => 'div',
-		'container_class' => 'css-menu-filmes',
-		'container_id'    => 'menu-filmes',
-		'menu_class'      => 'menu',
-		'menu_id'         => '',
-		'echo'            => true,
-		'fallback_cb'     => 'wp_page_menu',
-		'before'          => '',
-		'after'           => '',
-		'link_before'     => '',
-		'link_after'      => '',
-		'items_wrap'      => '<ul class="teste-class" id="teste-id">%3$s</ul>',
-		'depth'           => 0,
-		'walker'          => ''
-		)
+        array(
+            'theme_location'  => 'header-menu',
+            'menu'            => 'menu_filmes',
+            'container'       => 'div',
+            'container_class' => 'nav-item',
+            'container_id'    => 'menu-filmes-2',
+            'menu_class'      => '',
+            'menu_id'         => '',
+            'echo'            => true,
+            'fallback_cb'     => 'wp_page_menu',
+            'before'          => '',
+            'after'           => '',
+            'link_before'     => '',
+            'link_after'      => '',
+            'items_wrap'      => '<ul id="ul-menu">%3$s</ul>',
+            'depth'           => 0,
+            'walker'          => ''
+        )
 	);
 }
 
@@ -142,7 +142,7 @@ function my_wp_nav_menu_args($args = '')
 // Remove Injected classes, ID's and Page ID's from Navigation <li> items
 function my_css_attributes_filter($var)
 {
-    return is_array($var) ? array() : '';
+    return is_array($var) ? array() : 'nav-item';
 }
 
 // Remove invalid rel attribute values in the categorylist
@@ -369,9 +369,9 @@ add_filter('body_class', 'add_slug_to_body_class'); // Add slug to body class (S
 add_filter('widget_text', 'do_shortcode'); // Allow shortcodes in Dynamic Sidebar
 add_filter('widget_text', 'shortcode_unautop'); // Remove <p> tags in Dynamic Sidebars (better!)
 add_filter('wp_nav_menu_args', 'my_wp_nav_menu_args'); // Remove surrounding <div> from WP Navigation
-// add_filter('nav_menu_css_class', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> injected classes (Commented out by default)
-// add_filter('nav_menu_item_id', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> injected ID (Commented out by default)
-// add_filter('page_css_class', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> Page ID's (Commented out by default)
+//add_filter('nav_menu_css_class', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> injected classes (Commented out by default)
+//add_filter('nav_menu_item_id', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> injected ID (Commented out by default)
+//add_filter('page_css_class', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> Page ID's (Commented out by default)
 add_filter('the_category', 'remove_category_rel_from_category_list'); // Remove invalid rel attribute
 add_filter('the_excerpt', 'shortcode_unautop'); // Remove auto <p> tags in Excerpt (Manual Excerpts only)
 add_filter('the_excerpt', 'do_shortcode'); // Allows Shortcodes to be executed in Excerpt (Manual Excerpts only)
@@ -394,7 +394,14 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 /*------------------------------------*\
 	Custom Post Types
 \*------------------------------------*/
-
+function wpdocs_channel_nav_class( $classes, $item, $args ) {
+ 
+    if ( 'menu_filmes' === $args->theme_location ) {
+        $classes[] = "nav-item";
+    }
+ 
+    return $classes;
+}
 // Create 1 Custom Post type for a Demo, called HTML5-Blank
 function create_post_type_html5()
 {

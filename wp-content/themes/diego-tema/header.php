@@ -30,21 +30,41 @@
 
 			<!-- header -->
 			<header class="header clear" role="banner">
-
-					<!-- logo -->
-					<div class="logo">
-						<a href="<?php echo home_url(); ?>">
-							<!-- svg logo - toddmotto.com/mastering-svg-use-for-a-retina-web-fallbacks-with-png-script -->
-							<img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Logo" class="logo-img">
-						</a>
+				<div class="container">
+					<div class="row">
+						<!-- nav -->
+						<nav class="navegacao" role="navigation" id="menu-nav">
+							<a class="" href="<?php echo home_url(); ?>">
+								<img src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Logo" class="logo-img">
+							</a>
+							<div class="" id="menu-principal">
+								<?php html5blank_nav(); ?>
+							</div>
+						</nav>
+						<!-- /nav -->
 					</div>
-					<!-- /logo -->
+				</div>
+				<?php
+					$menu_name = 'menu_filmes';
+ 
+					if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_name ] ) ) {
+						$menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
+					 
+						$menu_items = wp_get_nav_menu_items($menu->term_id);
+					 
+						$menu_list = '<ul id="menu-' . $menu_name . '">';
+					 
+						foreach ( (array) $menu_items as $key => $menu_item ) {
+							$title = $menu_item->title;
+							$url = $menu_item->url;
+							$menu_list .= '<li><a href="' . $url . '">' . $title . '</a></li>';
+						}
+						$menu_list .= '</ul>';
+					} else {
+						$menu_list = '<ul><li>Menu "' . $menu_name . '" not defined.</li></ul>';
+					}
+					echo $menu_list;
 
-					<!-- nav -->
-					<nav class="nav" role="navigation" id="menu-nav">
-						<?php html5blank_nav(); ?>
-					</nav>
-					<!-- /nav -->
-
+				?>
 			</header>
 			<!-- /header -->
