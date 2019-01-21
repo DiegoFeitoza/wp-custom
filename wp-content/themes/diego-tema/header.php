@@ -27,44 +27,36 @@
 
 		<!-- wrapper -->
 		<div class="wrapper">
-
 			<!-- header -->
-			<header class="header clear" role="banner">
-				<div class="container">
-					<div class="row">
-						<!-- nav -->
-						<nav class="navegacao" role="navigation" id="menu-nav">
-							<a class="" href="<?php echo home_url(); ?>">
-								<img src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Logo" class="logo-img">
-							</a>
-							<div class="" id="menu-principal">
-								<?php html5blank_nav(); ?>
+			<header class="header" role="banner">
+				<!-- nav -->
+				<nav class="navegacao" role="navigation" id="menu-nav">							
+					<div class="container no-gutter">
+						<div class="row no-gutter">							
+							<div class="col-8 col-xl-3">
+								<div class="logo-menu">
+									<a class="" href="<?php echo home_url(); ?>">
+										<img src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Logo" class="logo-img">
+									</a>
+								</div>
+							</div>								
+							<div class="col-4 d-block d-sm-block d-md-none d-lg-none d-xg-none">
+								<div class="menu-toggle">
+									<div id="nav-icon1">
+										<span></span>
+										<span></span>
+										<span></span>
+									</div>
+								</div>
 							</div>
-						</nav>
-						<!-- /nav -->
+							<div class="col-12 col-xl-9">
+								<div id="menu-principal">
+									<?php html5blank_nav(); ?>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
-				<?php
-					$menu_name = 'menu_filmes';
- 
-					if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_name ] ) ) {
-						$menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
-					 
-						$menu_items = wp_get_nav_menu_items($menu->term_id);
-					 
-						$menu_list = '<ul id="menu-' . $menu_name . '">';
-					 
-						foreach ( (array) $menu_items as $key => $menu_item ) {
-							$title = $menu_item->title;
-							$url = $menu_item->url;
-							$menu_list .= '<li><a href="' . $url . '">' . $title . '</a></li>';
-						}
-						$menu_list .= '</ul>';
-					} else {
-						$menu_list = '<ul><li>Menu "' . $menu_name . '" not defined.</li></ul>';
-					}
-					echo $menu_list;
-
-				?>
+				</nav>
+				<!-- /nav -->
 			</header>
 			<!-- /header -->

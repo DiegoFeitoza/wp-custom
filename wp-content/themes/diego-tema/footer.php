@@ -13,7 +13,14 @@
 
 		</div>
 		<!-- /wrapper -->
-
+		<!-- JAVASCRIPT -->
+		<?php
+			// wp_enqueue_script( 'slick', get_bloginfo( 'template_directory' ) . '/libs/slick-carousel/slick/slick.min.js', array( 'jquery' ), '', true );
+			// wp_enqueue_script( 'fancybox', get_bloginfo( 'template_directory' ) . '/libs/fancybox/dist/jquery.fancybox.min.js', array(), '', true );
+			// wp_enqueue_script( 'map', get_bloginfo( 'template_directory' ) . '/js/map.js', array( 'jquery' ), '', true );
+			// wp_enqueue_script( 'bootstrap', get_bloginfo( 'template_directory' ) . '/libs/bootstrap-sass/assets/javascripts/bootstrap.js', array( 'jquery' ), '', true );
+			wp_enqueue_script( 'main', get_bloginfo( 'template_directory' ) . '/js/main.js', array( 'jquery' ), '', true );
+		?>
 		<?php wp_footer(); ?>
 
 		<!-- analytics -->
