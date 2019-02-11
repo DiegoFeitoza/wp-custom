@@ -1,5 +1,25 @@
 /* MEDIA QUERY ------------------------------------------------------------*/
 //
+footer{
+    &.footer {
+        padding: 15px 15px;
+        background: #e53c33;
+        color: white;
+        margin: 0;
+        font-size: 12px;
+
+        *{
+            color:white;
+        }
+
+        .copyright {
+            margin: 0;
+        }
+    }
+}
+
+
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: $screen-sm-min) {
 

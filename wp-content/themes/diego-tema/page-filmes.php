@@ -28,7 +28,7 @@
                                             $tags= get_the_terms( $id, 'idade');
                                             foreach($tags as $tag): 
                                         ?>
-                                            <span class="<?php echo $tag->name ?>">
+                                            <span class="class-<?php echo $tag->name ?>">
                                                 <?php echo $tag->name ?>
                                             </span>
                                         <?php endforeach;?>
