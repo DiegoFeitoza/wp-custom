@@ -20,7 +20,7 @@
                         $newsLoop = new WP_Query( $newsArgs );                  
                                             
                         while ( $newsLoop->have_posts() ) : $newsLoop->the_post();              ?>
-                    <div class="col-6 col-xl-4">
+                    <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
                         <div class="card">
                                 <div class="poster-movie-small">                            
                                     <div class="classificacao">

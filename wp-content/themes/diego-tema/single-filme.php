@@ -11,15 +11,15 @@
 					<!-- article -->
 					<article id="post-<?php the_ID(); ?>" <?php post_class('article-single-filme'); ?>>
 						<div class="row">
-						<div class="col-12">
-							<!-- post thumbnail -->
-							<?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
-								<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-									<?php the_post_thumbnail(); // Fullsize image for the single post ?>
-								</a>
-							<?php endif; ?>
-							<!-- /post thumbnail -->
-						</div>
+							<div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+								<!-- post thumbnail -->
+								<?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
+									<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+										<?php the_post_thumbnail(); // Fullsize image for the single post ?>
+									</a>
+								<?php endif; ?>
+								<!-- /post thumbnail -->
+							</div>
 						</div>
 						<div class="col-12">
 							<!-- post title -->
